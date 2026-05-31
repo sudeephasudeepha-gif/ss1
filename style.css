@@ -21,7 +21,7 @@ body{
 #loading-screen{
 
   width:min(75vh,100vw);
-  aspect-ratio:3/4;
+  aspect-ratio:4/3;
 
   display:flex;
   flex-direction:column;
@@ -61,7 +61,7 @@ body{
 
 #main-content{
   width:min(75vh,100vw);
-  aspect-ratio:3/4;
+  aspect-ratio:4/3;
 
   position:relative;
 }
@@ -71,7 +71,7 @@ body{
 .page{
 
   width:min(75vh,100vw);
-  aspect-ratio:3/4;
+  aspect-ratio:4/3;
 
   display:none;
 
