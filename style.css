@@ -8,20 +8,39 @@ FILE: style.css
   box-sizing:border-box;
 }
 
-body{
+html,body{
+  width:100%;
+  height:100%;
+}
 
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background:#f8e6ee;
   font-family:'Poppins',sans-serif;
   overflow:hidden;
   color:#ff4fa0;
 }
 
+/* 4:3 CONTAINER */
+
+.app-container{
+  aspect-ratio:4/3;
+
+  width:min(100vw, calc(100vh * 4 / 3));
+  height:min(100vh, calc(100vw * 3 / 4));
+
+  background:#f8e6ee;
+  overflow:hidden;
+  position:relative;
+}
+
 /* LOADING SCREEN */
 
 #loading-screen{
-
   width:100%;
-  height:100vh;
+  height:100%;
 
   display:flex;
   flex-direction:column;
@@ -32,12 +51,10 @@ body{
 }
 
 #loading-screen h2{
-
   margin-top:20px;
   font-family:'Pacifico',cursive;
   font-size:35px;
-
-  animation: blink 1s infinite;
+  animation:blink 1s infinite;
 }
 
 .kitty{
@@ -45,22 +62,20 @@ body{
 }
 
 @keyframes blink{
-
   50%{
     opacity:0.5;
   }
 }
 
-/* MAIN */
+/* MAIN PAGES */
 
 .hidden{
   display:none;
 }
 
 .page{
-
   width:100%;
-  height:100vh;
+  height:100%;
 
   display:none;
 
@@ -69,7 +84,6 @@ body{
   align-items:center;
 
   text-align:center;
-
   padding:20px;
 }
 
@@ -78,10 +92,8 @@ body{
 }
 
 h1{
-
   font-family:'Pacifico',cursive;
   font-size:45px;
-
   margin-bottom:20px;
 }
 
@@ -94,7 +106,6 @@ p{
 /* BUTTON */
 
 button{
-
   margin-top:30px;
 
   padding:14px 30px;
@@ -105,34 +116,31 @@ button{
   background:linear-gradient(45deg,#ff7eb3,#ff4fa0);
 
   color:white;
-
   font-size:18px;
-  cursor:pointer;
 
+  cursor:pointer;
   transition:0.3s;
 
   box-shadow:0 5px 20px rgba(255,79,160,0.4);
 }
 
 button:hover{
-
   transform:scale(1.05);
 }
 
 /* IMAGES */
 
 .cute-img{
-
   width:180px;
 }
 
 .cake{
-
   width:250px;
 }
 
-.gallery{
+/* GALLERY */
 
+.gallery{
   display:flex;
   gap:20px;
   margin-top:20px;
@@ -141,9 +149,8 @@ button:hover{
 }
 
 .gallery img{
-
-  width:200px;
-  height:260px;
+  width:240px;
+  aspect-ratio:4/3;
 
   object-fit:cover;
 
@@ -155,14 +162,12 @@ button:hover{
 }
 
 .gallery img:hover{
-
   transform:scale(1.05);
 }
 
 /* MESSAGE CARD */
 
 .message-card{
-
   width:80%;
   max-width:500px;
 
@@ -176,14 +181,12 @@ button:hover{
 }
 
 .message-card p{
-
   line-height:1.8;
 }
 
 /* FINAL */
 
 .final-img{
-
   width:250px;
 }
 
@@ -195,14 +198,28 @@ button:hover{
     font-size:32px;
   }
 
-  .gallery img{
+  p{
+    font-size:16px;
+  }
 
-    width:150px;
-    height:200px;
+  .gallery img{
+    width:160px;
+    aspect-ratio:4/3;
   }
 
   .message-card{
-
     width:95%;
+  }
+
+  .cute-img{
+    width:140px;
+  }
+
+  .cake{
+    width:180px;
+  }
+
+  .final-img{
+    width:180px;
   }
 }
