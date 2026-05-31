@@ -2,23 +2,21 @@
 FILE: style.css
 ========================= */
 
-/* RESET */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-/* BODY */
 html,body{
   width:100%;
   height:100%;
-  overflow:hidden;
 }
 
 body{
-  background:#000; /* black bars around 4:3 area */
+  background:#f8e6ee;
   font-family:'Poppins',sans-serif;
+  overflow:hidden;
   color:#ff4fa0;
 
   display:flex;
@@ -26,29 +24,12 @@ body{
   align-items:center;
 }
 
-/* =========================
-   4:3 CONTAINER
-========================= */
-
-#wrap{
-  position:relative;
-
-  width:min(95vw, calc(95vh * 4 / 3));
-  aspect-ratio:4 / 3;
-
-  background:#f8e6ee;
-
-  overflow:hidden;
-}
-
-/* =========================
-   LOADING SCREEN
-========================= */
+/* LOADING SCREEN */
 
 #loading-screen{
 
-  width:100%;
-  height:100%;
+  width:min(95vw, calc(95vh * 4 / 3));
+  height:min(95vh, calc(95vw * 3 / 4));
 
   display:flex;
   flex-direction:column;
@@ -64,7 +45,7 @@ body{
   font-family:'Pacifico',cursive;
   font-size:35px;
 
-  animation:blink 1s infinite;
+  animation: blink 1s infinite;
 }
 
 .kitty{
@@ -78,9 +59,7 @@ body{
   }
 }
 
-/* =========================
-   MAIN PAGES
-========================= */
+/* MAIN */
 
 .hidden{
   display:none;
@@ -88,8 +67,8 @@ body{
 
 .page{
 
-  width:100%;
-  height:100%;
+  width:min(95vw, calc(95vh * 4 / 3));
+  height:min(95vh, calc(95vw * 3 / 4));
 
   display:none;
 
@@ -120,9 +99,7 @@ p{
   margin-top:10px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTON */
 
 button{
 
@@ -133,11 +110,7 @@ button{
   border:none;
   border-radius:40px;
 
-  background:linear-gradient(
-      45deg,
-      #ff7eb3,
-      #ff4fa0
-  );
+  background:linear-gradient(45deg,#ff7eb3,#ff4fa0);
 
   color:white;
 
@@ -146,10 +119,7 @@ button{
 
   transition:0.3s;
 
-  box-shadow:
-      0 5px 20px rgba(
-      255,79,160,0.4
-  );
+  box-shadow:0 5px 20px rgba(255,79,160,0.4);
 }
 
 button:hover{
@@ -157,50 +127,37 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* =========================
-   IMAGES
-========================= */
+/* IMAGES */
 
 .cute-img{
+
   width:180px;
 }
 
 .cake{
+
   width:250px;
 }
-
-.final-img{
-  width:250px;
-}
-
-/* =========================
-   GALLERY
-========================= */
 
 .gallery{
 
   display:flex;
   gap:20px;
-
   margin-top:20px;
-
   flex-wrap:wrap;
   justify-content:center;
 }
 
 .gallery img{
 
-  width:240px;
-  aspect-ratio:4 / 3;
+  width:200px;
+  height:260px;
 
   object-fit:cover;
 
   border-radius:20px;
 
-  box-shadow:
-      0 5px 20px rgba(
-      0,0,0,0.15
-  );
+  box-shadow:0 5px 20px rgba(0,0,0,0.15);
 
   transition:0.3s;
 }
@@ -210,9 +167,7 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* =========================
-   MESSAGE CARD
-========================= */
+/* MESSAGE CARD */
 
 .message-card{
 
@@ -225,10 +180,7 @@ button:hover{
 
   border-radius:25px;
 
-  box-shadow:
-      0 10px 30px rgba(
-      0,0,0,0.1
-  );
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 .message-card p{
@@ -236,9 +188,14 @@ button:hover{
   line-height:1.8;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* FINAL */
+
+.final-img{
+
+  width:250px;
+}
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -246,30 +203,14 @@ button:hover{
     font-size:32px;
   }
 
-  p{
-    font-size:16px;
-  }
-
   .gallery img{
 
     width:150px;
-    aspect-ratio:4 / 3;
+    height:200px;
   }
 
   .message-card{
 
     width:95%;
-  }
-
-  .cute-img{
-    width:140px;
-  }
-
-  .cake{
-    width:180px;
-  }
-
-  .final-img{
-    width:180px;
   }
 }
