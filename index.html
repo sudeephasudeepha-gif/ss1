@@ -13,12 +13,10 @@
 <body>
 
   <!-- Background Music -->
-  <audio id="bgMusic" loop>
+  <audio autoplay loop>
     <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
-
-  <!-- Music Button -->
-  <button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
 
   <!-- LOADING SCREEN -->
   <div id="loading-screen">
@@ -119,28 +117,6 @@
   </div>
 
   <script src="script.js"></script>
-
-  <script>
-    const music = document.getElementById("bgMusic");
-
-    document.addEventListener(
-      "click",
-      () => {
-        music.play().catch(() => {});
-      },
-      { once: true }
-    );
-
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        document.getElementById("musicBtn").innerHTML = "🔊 Music";
-      } else {
-        music.pause();
-        document.getElementById("musicBtn").innerHTML = "🔇 Music";
-      }
-    }
-  </script>
 
 </body>
 </html>
