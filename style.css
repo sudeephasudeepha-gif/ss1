@@ -8,28 +8,20 @@ FILE: style.css
   box-sizing:border-box;
 }
 
-html,body{
-  width:100%;
-  height:100%;
-}
-
 body{
+
   background:#f8e6ee;
   font-family:'Poppins',sans-serif;
   overflow:hidden;
   color:#ff4fa0;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
 }
 
 /* LOADING SCREEN */
 
 #loading-screen{
 
-  width:min(95vw, calc(95vh * 4 / 3));
-  height:min(95vh, calc(95vw * 3 / 4));
+  width:100%;
+  height:100vh;
 
   display:flex;
   flex-direction:column;
@@ -67,8 +59,8 @@ body{
 
 .page{
 
-  width:min(95vw, calc(95vh * 4 / 3));
-  height:min(95vh, calc(95vw * 3 / 4));
+  width:100%;
+  height:100vh;
 
   display:none;
 
@@ -213,4 +205,4 @@ button:hover{
 
     width:95%;
   }
-}
+} I want the width and height to be in the aspect ratio of 4:3
