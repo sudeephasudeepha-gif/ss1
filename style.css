@@ -305,17 +305,20 @@ button:hover{
 
 
 /* =======================================================
-   MOBILE ADAPTIVE ENGINE
-   Forces vertical smartphone views to process standard 4:3 horizontal box limits
+   MOBILE ADAPTIVE ENGINE (FIXED FOR UPPER/DOWN BLACK BARS)
 ========================================================= */
 @media (max-width: 768px) {
   #loading-screen,
   #main-content,
   #wrap {
-    /* Strict horizontal 4:3 calculation based on width scale */
-    width: 92vw !important; 
-    height: calc(92vw * 3 / 4) !important;
+    /* Basing dimensions on vertical screen height ('vh') instead of width!
+       This limits the box height so it stays a true landscape box, 
+       creating clean black empty bars at the top and bottom of the phone.
+    */
+    height: 45vh !important;
+    width: calc(45vh * 4 / 3) !important; /* Perfect 4:3 landscape math */
     
+    /* Absolute screen centering mechanics */
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
@@ -325,34 +328,34 @@ button:hover{
     padding: 20px !important;
   }
 
-  /* Optimized mobile font engine to fill space inside box flawlessly */
+  /* Optimized font sizes to fit nicely inside the scaled box */
   #loading-screen h2, h1 {
-    font-size: 20px !important;
-    line-height: 1.4 !important;
-    margin-top: 15px !important;
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+    margin-top: 10px !important;
     margin-bottom: 5px !important;
   }
   
   p, #code {
-    font-size: 13px !important;
+    font-size: 12px !important;
     margin-top: 4px !important;
   }
 
-  /* Structural assets resize matrix */
+  /* Image scaling matrices */
   .kitty, .cute-img, .final-img {
-    width: 75px !important;
-    min-width: 75px !important;
+    width: 65px !important;
+    min-width: 65px !important;
     margin-bottom: 0px !important;
   }
   
   .cake {
-    width: 110px !important;
-    min-width: 110px !important;
+    width: 95px !important;
+    min-width: 95px !important;
   }
 
   button {
-    margin-top: 12px !important;
-    padding: 8px 24px !important;
-    font-size: 13px !important;
+    margin-top: 10px !important;
+    padding: 6px 20px !important;
+    font-size: 12px !important;
   }
 }
