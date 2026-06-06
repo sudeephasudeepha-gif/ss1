@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 3. Keep her on this loading screen with the music playing for 3 seconds, then reveal Page 1
         setTimeout(() => {
-            loadingScreen.style.display = "none";
+            // FIXED: Uses classList instead of style.display to align perfectly with your 4:3 CSS structure
+            loadingScreen.classList.add("hidden"); 
             document.getElementById("main-content").classList.remove("hidden");
         }, 3000);
         
