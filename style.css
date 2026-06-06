@@ -1,3 +1,10 @@
+I see exactly what is happening now from your screenshots. Your canvas tree container (`#wrap`) is rendering with sharp, square edges, and it cuts off part of the heart tree on the right side. Meanwhile, your pink birthday message card has beautiful rounded edges and sits perfectly centered as a box.
+
+To make the canvas tree section look identical to your pink birthday card box, we need to apply the exact same border properties, padding constraints, and background canvas centering to the tree page.
+
+Here is the updated **`style.css`** file that forces the canvas layout into a matching box shape:
+
+```css
 /* =========================
 FILE: style.css
 ========================= */
@@ -27,8 +34,7 @@ body{
 
 /* =======================================================
    THE UNIFIED 4:3 DIMENSION ENGINE
-   This sets the EXACT same width and height across all three major elements,
-   positioning them seamlessly over each other while ignoring backgrounds.
+   This locks the size and position of every single view container
 ========================================================= */
 #loading-screen,
 #main-content,
@@ -40,12 +46,13 @@ body{
 
   aspect-ratio: 4 / 3;
 
-  /* Strict responsive 4:3 layout equations taken directly from your canvas logic */
+  /* Strict responsive 4:3 layout equations */
   width: min(100vw, calc(100vh * 4 / 3));
   height: min(100vh, calc(100vw * 3 / 4));
 
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 28px; /* Match the rounded corners of the mobile preview cards */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Gives a soft depth pop over the pure black background */
 }
 
 
@@ -64,11 +71,27 @@ body{
   align-items: center;
 }
 
-/* Starry Canvas Tree Page */
+/* Starry Canvas Tree Page - Styled like a box container */
 #wrap {
-  background: url("../img2.png") center center/cover no-repeat;
+  background: #000 url("../img2.png") center center/cover no-repeat;
   color: white;
-  display: block; /* Preserves absolute layout for tree structures */
+  display: block; 
+  border: 10px solid #000; /* Optional: adds a distinct border framing if desired */
+}
+
+/* THE TREE ANIMATION CANVAS
+   Centering and containing the canvas drawing so it fits neatly inside the box limits
+*/
+#canvas{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keeps your heart branch shapes inside the boundary box walls */
+  display: block;
+  z-index: 1;
 }
 
 
@@ -213,17 +236,8 @@ button:hover{
 
 
 /* =======================================================
-   CANVAS OVERLAYS & TYPED MESSAGE TERMINALS (FROM TREE LOGIC)
+   CANVAS OVERLAYS & TYPED MESSAGE TERMINALS
 ========================================================= */
-#canvas{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 1;
-}
-
 #text{
   position: absolute;
   top: 15%;
@@ -291,3 +305,5 @@ button:hover{
   pointer-events: none;
   z-index: 100;
 }
+
+```
