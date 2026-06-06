@@ -1,4 +1,3 @@
-
 /* =======================================================
    FILE: style.css
    PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
@@ -68,7 +67,7 @@ body{
 
 /* Specific text reduction for elements inside the wrap view */
 #wrap p {
-  font-size: calc(0.65rem + 0.15vw); /* Reduced from 0.75rem + 0.2vw */
+  font-size: calc(0.65rem + 0.15vw); 
   line-height: 1.5;
 }
 
@@ -76,25 +75,33 @@ body{
 #loading-screen h2{
   margin-top: 20px;
   font-family: 'Pacifico', cursive;
-  font-size: calc(1.1rem + 0.8vw); /* Reduced from 1.4rem + 1vw */
+  font-size: calc(1.1rem + 0.8vw); 
   text-align: center;
   padding: 0 15px;
   color: #ff4fa0;
   animation: blink 1s infinite;
 }
 
-/* Size increase rules specifically for load1.png */
+/* BIG SCALE: Size rules specifically for load1.png */
 .load1-img {
-  width: 36%;
-  min-width: 180px;
-  max-width: 260px;
-  height: auto;
+  width: 50% !important;
+  min-width: 250px !important;
+  max-width: 360px !important;
+  height: auto !important;
+}
+
+/* BIG SCALE: Size rules specifically for load2_circle-crop.png */
+.load2_circle-crop-img {
+  width: 50% !important;
+  min-width: 250px !important;
+  max-width: 360px !important;
+  height: auto !important;
 }
 
 .kitty{
-  width: 22%;
-  min-width: 110px;
-  max-width: 150px;
+  width: 26%;
+  min-width: 130px;
+  max-width: 180px;
 }
 
 @keyframes blink{
@@ -125,7 +132,7 @@ body{
 
 h1{
   font-family: 'Pacifico', cursive;
-  font-size: calc(1.4rem + 0.9vw); /* Reduced from 1.8rem + 1.2vw */
+  font-size: calc(1.4rem + 0.9vw); 
   margin-bottom: 16px;
   padding: 0 10px;
   color: #ff4fa0;
@@ -133,7 +140,7 @@ h1{
 
 p{
   color: #ff4fa0; /* Updated: Changed from gray (#555) to matching pink */
-  font-size: calc(0.75rem + 0.25vw); /* Reduced from 0.9rem + 0.3vw */
+  font-size: calc(0.75rem + 0.25vw); 
   margin-top: 8px;
 }
 
@@ -145,7 +152,7 @@ button{
   border-radius: 40px;
   background: linear-gradient(45deg, #ff7eb3, #ff4fa0);
   color: white;
-  font-size: calc(0.75rem + 0.25vw); /* Reduced from 0.9rem + 0.3vw */
+  font-size: calc(0.75rem + 0.25vw); 
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0 5px 20px rgba(255, 79, 160, 0.4);
@@ -156,17 +163,17 @@ button:hover{
   transform: scale(1.05);
 }
 
-/* IMAGES */
+/* BIG SCALE: IMAGES MAIN HOOKS */
 .cute-img{
-  width: 22%;
-  min-width: 120px;
-  max-width: 180px;
+  width: 32% !important; /* Increased from 22% */
+  min-width: 160px !important;
+  max-width: 230px !important;
 }
 
 .cake{
-  width: 30%;
-  min-width: 160px;
-  max-width: 250px;
+  width: 42% !important; /* Increased from 30% */
+  min-width: 210px !important;
+  max-width: 310px !important;
 }
 
 .gallery{
@@ -175,11 +182,11 @@ button:hover{
   margin-top: 20px;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 95%;
 }
 
 .gallery img{
-  width: 28%;
+  width: 31% !important; /* Increased from 28% */
   aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: 20px;
@@ -203,14 +210,14 @@ button:hover{
 
 .message-card p{
   line-height: 1.7;
-  color: #ff4fa0; /* Overridden to match your chosen primary color */
+  color: #ff4fa0; 
 }
 
-/* FINAL */
+/* BIG SCALE: FINAL OVERVIEW IMAGE */
 .final-img{
-  width: 30%;
-  min-width: 160px;
-  max-width: 250px;
+  width: 42% !important; /* Increased from 30% */
+  min-width: 210px !important;
+  max-width: 310px !important;
 }
 
 #confetti{
@@ -230,7 +237,6 @@ button:hover{
   #loading-screen,
   #main-content,
   #wrap {
-    /* Set horizontal box size to create top/bottom letterbox black bars */
     width: 90vw !important;
     height: calc(90vw * 3 / 4) !important;
     
@@ -248,46 +254,47 @@ button:hover{
   }
 
   h1{
-    font-size: calc(0.9rem + 1.2vw) !important; /* Reduced from 1.1rem + 1.5vw */
+    font-size: calc(0.9rem + 1.2vw) !important; 
     line-height: 1.3 !important;
     margin-top: 2px !important;
     margin-bottom: 2px !important;
   }
 
   p {
-    font-size: calc(0.62rem + 0.4vw) !important; /* Reduced from 0.72rem + 0.5vw */
+    font-size: calc(0.62rem + 0.4vw) !important; 
     line-height: 1.4 !important;
     margin-top: 2px !important;
   }
 
-  /* Make wrap paragraph text even smaller on mobile viewport breakpoints */
   #wrap p {
-    font-size: calc(0.52rem + 0.25vw) !important; /* Reduced from 0.6rem + 0.3vw */
+    font-size: calc(0.52rem + 0.25vw) !important; 
     line-height: 1.3 !important;
   }
 
-  /* Target scaling for load1 image on mobile screens */
-  .load1-img {
-    width: 125px !important;
-    min-width: 125px !important;
+  /* BIG SCALE MOBILE: Dynamic display sizing for intro/loading graphics */
+  .load1-img,
+  .load2_circle-crop-img {
+    width: 175px !important; /* Increased from 125px */
+    min-width: 175px !important;
     margin-bottom: 6px !important;
     height: auto !important;
   }
 
+  /* BIG SCALE MOBILE: Standard content elements layout dimensions */
   .kitty, .cute-img, .final-img {
-    width: 55px !important;
-    min-width: 55px !important;
-    margin-bottom: 2px !important;
-  }
-
-  .cake {
-    width: 80px !important;
+    width: 80px !important; /* Increased from 55px */
     min-width: 80px !important;
     margin-bottom: 2px !important;
   }
 
+  .cake {
+    width: 110px !important; /* Increased from 80px */
+    min-width: 110px !important;
+    margin-bottom: 2px !important;
+  }
+
   .gallery img{
-    width: 28% !important;
+    width: 31% !important; /* Increased from 28% */
     height: auto !important;
     aspect-ratio: 3 / 4 !important;
     border-radius: 10px !important;
@@ -306,10 +313,6 @@ button:hover{
   button {
     margin-top: 8px !important;
     padding: 5px 14px !important;
-    font-size: 10px !important; /* Reduced from 11px */
+    font-size: 10px !important; 
   }
 }
-
-
-> **Reminder:** Make sure that the loading image tag inside your HTML markup includes this matching class name so the properties sync properly:
-> `<img src="load1.png" class="load1-img" alt="Loading...">`
