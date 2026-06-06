@@ -1,3 +1,6 @@
+Here is your updated CSS file. I have directly injected the custom font sizing for the `#wrap` container right below its definition, and added the override inside the mobile media query so it stays compact on smaller devices.
+
+```css
 /* =======================================================
    FILE: style.css
    PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
@@ -63,6 +66,12 @@ body{
   background: #000 url("../img2.png") center center/cover no-repeat;
   color: white;
   display: block;
+}
+
+/* Specific text reduction for elements inside the wrap view */
+#wrap p {
+  font-size: calc(0.75rem + 0.2vw);
+  line-height: 1.6;
 }
 
 /* LOADING SCREEN */
@@ -245,6 +254,12 @@ button:hover{
     margin-top: 2px !important;
   }
 
+  /* Make wrap paragraph text even smaller on mobile viewport breakpoints */
+  #wrap p {
+    font-size: calc(0.6rem + 0.3vw) !important;
+    line-height: 1.3 !important;
+  }
+
   .kitty, .cute-img, .final-img {
     width: 55px !important;
     min-width: 55px !important;
@@ -280,3 +295,5 @@ button:hover{
     font-size: 11px !important;
   }
 }
+
+```
