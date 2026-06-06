@@ -1,241 +1,208 @@
-/* =======================================================
-   FILE: style.css
-   PROJECT: Sarah's Birthday Box - Unified Responsive 4:3
-========================================================= */
+/* =========================
+FILE: style.css
+========================= */
 
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BODY */
-html, body {
-    height: 100%;
-    background: black;
-    overflow: hidden;
-    font-family: sans-serif;
-    color: black;
-}
+body{
 
-/* UTILITY */
-.hidden {
-    display: none !important;
-}
-
-/* =======================================================
-   UNIFIED 4:3 CONTAINER ENGINE (FIXED)
-   - Uses ONLY aspect-ratio + width
-   - No conflicting height calculations
-========================================================= */
-#loading-screen,
-#main-content,
-#wrap {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
- width: min(90vw, calc(90vh * 4 / 3));
-    aspect-ratio: 4 / 3;
-
-    overflow: hidden;
-    border-radius: 0px;
-}
-
-/* PANEL STYLES */
-#loading-screen,
-#main-content {
-    background: #f8e6ee;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* BACKGROUND WRAP (NO CHANGE LOGIC) */
-#wrap {
-    background: #000 url("../img2.png") center center / cover no-repeat;
-    display: block;
-    color: white;
+  background:#f8e6ee;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  color:#ff4fa0;
 }
 
 /* LOADING SCREEN */
-#loading-screen h2 {
-    margin-top: 20px;
-    font-family: 'Pacifico', cursive;
-    font-size: calc(1.4rem + 1vw);
-    text-align: center;
-    animation: blink 1s infinite;
+
+#loading-screen{
+
+  width:100%;
+  height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  background:#f8e6ee;
 }
 
-.kitty {
-    width: 22%;
-    min-width: 110px;
-    max-width: 170px;
+#loading-screen h2{
+
+  margin-top:20px;
+  font-family:'Pacifico',cursive;
+  font-size:35px;
+
+  animation: blink 1s infinite;
 }
 
-@keyframes blink {
-    50% {
-        opacity: 0.5;
-    }
+.kitty{
+  width:150px;
 }
 
-/* PAGES */
-.page {
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 5%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #f8e6ee;
+@keyframes blink{
+
+  50%{
+    opacity:0.5;
+  }
 }
 
-.page.active {
-    display: flex;
+/* MAIN */
+
+.hidden{
+  display:none;
 }
 
-/* TEXT */
-h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: calc(1.8rem + 1.2vw);
-    margin-bottom: 15px;
+.page{
+
+  width:100%;
+  height:100vh;
+
+  display:none;
+
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:20px;
 }
 
-p {
-    color: #555;
-    font-size: calc(0.9rem + 0.3vw);
+.active{
+  display:flex;
+}
+
+h1{
+
+  font-family:'Pacifico',cursive;
+  font-size:45px;
+
+  margin-bottom:20px;
+}
+
+p{
+  color:#555;
+  font-size:18px;
+  margin-top:10px;
 }
 
 /* BUTTON */
-button {
-    margin-top: 20px;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 40px;
-    background: linear-gradient(45deg, #ff7eb3, #ff4fa0);
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
+
+button{
+
+  margin-top:30px;
+
+  padding:14px 30px;
+
+  border:none;
+  border-radius:40px;
+
+  background:linear-gradient(45deg,#ff7eb3,#ff4fa0);
+
+  color:white;
+
+  font-size:18px;
+  cursor:pointer;
+
+  transition:0.3s;
+
+  box-shadow:0 5px 20px rgba(255,79,160,0.4);
 }
 
-button:hover {
-    transform: scale(1.05);
+button:hover{
+
+  transform:scale(1.05);
 }
 
 /* IMAGES */
-.cute-img,
-.final-img {
-    width: 22%;
-    min-width: 120px;
+
+.cute-img{
+
+  width:180px;
 }
 
-.cake {
-    width: 30%;
-    min-width: 160px;
+.cake{
+
+  width:250px;
 }
 
-/* GALLERY */
-.gallery {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
+.gallery{
+
+  display:flex;
+  gap:20px;
+  margin-top:20px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
-.gallery img {
-    width: 28%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 15px;
+.gallery img{
+
+  width:200px;
+  height:260px;
+
+  object-fit:cover;
+
+  border-radius:20px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+  transition:0.3s;
+}
+
+.gallery img:hover{
+
+  transform:scale(1.05);
 }
 
 /* MESSAGE CARD */
-.message-card {
-    width: 85%;
-    max-width: 520px;
-    background: #ffeef5;
-    padding: 20px 25px;
-    border-radius: 20px;
+
+.message-card{
+
+  width:80%;
+  max-width:500px;
+
+  background:#ffeef5;
+
+  padding:30px;
+
+  border-radius:25px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-.message-card p {
-    line-height: 1.6;
+.message-card p{
+
+  line-height:1.8;
 }
 
-/* CANVAS LAYERS */
-#canvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
+/* FINAL */
 
-#text {
-    position: absolute;
-    top: 15%;
-    left: 8%;
-    width: 44%;
-}
+.final-img{
 
-#code {
-    display: none;
-    color: rgb(196, 255, 255);
-    font-size: clamp(14px, 2.2vw, 24px);
-    line-height: 1.7;
-}
-
-/* CLOCK */
-#clock-box {
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-}
-
-/* MESSAGE */
-#message-box {
-    position: absolute;
-    bottom: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    text-align: center;
-}
-
-/* CONFETTI */
-#confetti {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+  width:250px;
 }
 
 /* MOBILE */
-@media (max-width: 768px) {
 
-    #loading-screen,
-    #main-content,
-    #wrap {
-        width: 90vw !important;
-    }
+@media(max-width:768px){
 
-    h1 {
-        font-size: 1.4rem;
-    }
+  h1{
+    font-size:32px;
+  }
 
-    p {
-        font-size: 0.9rem;
-    }
+  .gallery img{
 
-    button {
-        padding: 8px 18px;
-        font-size: 12px;
-    }
+    width:150px;
+    height:200px;
+  }
+
+  .message-card{
+
+    width:95%;
+  }
 }
