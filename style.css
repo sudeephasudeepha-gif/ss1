@@ -1,4 +1,3 @@
-
 /* =======================================================
    FILE: style.css
    PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
@@ -36,7 +35,7 @@ body{
 #loading-screen,
 #main-content,
 #wrap {
-  position: absolute;
+  position: fixed ;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -45,11 +44,9 @@ body{
 
   /* Strict boundaries to fit inside mobile and desktop frames perfectly */
   width: min(100vw, calc(100vh * 4 / 3));
-  height: min(100vh, calc(100vw * 3 / 4));
 
   overflow: hidden;
-  border-radius: 20px; /* Modern rectangle with smooth rounded corners */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 0px; /* Modern rectangle with smooth rounded corners */
 }
 
 /* INDIVIDUAL PANEL SCHEMES */
@@ -201,65 +198,6 @@ button:hover{
   max-width: 250px;
 }
 
-/* TREE ANIMATION CANVAS PLATFORM AND OVERLAYS */
-#canvas {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 1;
-}
-
-#text {
-  position: absolute;
-  top: 15%;
-  left: 8%;
-  width: 44%;
-  text-align: left;
-  z-index: 5;
-}
-
-#code {
-  display: none;
-  color: rgb(196, 255, 255);
-  font-size: clamp(14px, 2.2vw, 24px);
-  line-height: 1.7;
-  font-weight: 600;
-  margin-top: 20px;
-}
-
-#clock-box {
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none;
-  font-size: clamp(12px, 2.8vw, 24px);
-  color: #fff;
-  z-index: 5;
-  text-align: center;
-}
-
-#clock .digit {
-  font-size: clamp(20px, 4.5vw, 52px);
-  font-weight: bold;
-}
-
-#message-box {
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  text-align: center;
-  font-size: clamp(12px, 2.5vw, 22px);
-  color: #fff;
-  z-index: 5;
-}
-
 #confetti{
   position: absolute;
   top: 0;
@@ -301,7 +239,7 @@ button:hover{
     margin-bottom: 2px !important;
   }
 
-  p, #code {
+  p {
     font-size: calc(0.72rem + 0.5vw) !important;
     line-height: 1.4 !important;
     margin-top: 2px !important;
@@ -342,4 +280,3 @@ button:hover{
     font-size: 11px !important;
   }
 }
-
