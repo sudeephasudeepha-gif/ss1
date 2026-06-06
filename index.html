@@ -12,26 +12,19 @@
 
 <body>
 
-  <!-- Background Music -->
-<audio id="myAudio" autoplay>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+  <audio id="myAudio" autoplay>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- LOADING SCREEN -->
   <div id="loading-screen">
-
     <img src="load1.png" class="kitty">
 
     <h2>Loading your birthday surprise....</h2>
-
   </div>
 
-  <!-- MAIN CONTENT -->
   <div id="main-content" class="hidden">
 
-    <!-- PAGE 1 -->
     <section class="page active" id="page1">
-
       <img src="https://media.tenor.com/W7lIFrltn54AAAAi/hello-kiyty-cute.gif" class="cute-img">
 
       <h1>My girl was born 20 years ago today! 💖</h1>
@@ -39,72 +32,57 @@
       <p>Yes, it's YOUR little surprise website...</p>
 
       <button onclick="nextPage()">Start the surprise</button>
-
     </section>
 
-    <!-- PAGE 2 -->
     <section class="page" id="page2">
-
       <h1>Swipe anywhere to cut the cake 🎂</h1>
 
-      <img src="a7akqe3fwsrmt0cyktmbfrpbec.gif" class="cake">
+      <img src="a7akqe3fwsrmt0cyktmbfrpbec.gif" class="cake" id="birthday-cake">
 
       <p>Swipe left or right 💕</p>
-
     </section>
 
-    <!-- PAGE 3 -->
     <section class="page" id="page3">
-
       <h1>Some Sweet Moments 💞</h1>
 
-<div class="gallery">
-    <img src="img1.jpeg">
-    <img src="img4.jpeg">
-    <img src="img6.jpeg">
-</div>
+      <div class="gallery">
+        <img src="img1.jpeg">
+        <img src="img4.jpeg">
+        <img src="img6.jpeg">
+      </div>
 
       <button onclick="nextPage()">Open My Message 💌</button>
-
     </section>
 
-    <!-- PAGE 4 -->
     <section class="page" id="page4">
-
       <div class="message-card">
-
         <h1>A Special Message 💗</h1>
 
         <p>
           Happy Birthday My Love ❤️<br><br>
 
           You deserve all the happiness,
-          smiles, love and success in this world.
+          smiles, love and success in this world.<br><br>
 
           Thank you for always being there,
-          making everything beautiful and special.
+          making everything beautiful and special.<br><br>
 
           I hope your life becomes full of
-          happiness, success and unforgettable memories.
+          happiness, success and unforgettable memories.<br><br>
 
           Keep smiling forever ✨
         </p>
-
       </div>
 
       <button onclick="showFinal()">Final Surprise 🎁</button>
-
     </section>
 
-    <!-- FINAL PAGE -->
     <section class="page" id="page5">
-
       <h1>Happy Birthday Princess 👑💖</h1>
 
       <img src="https://media.tenor.com/7UJ8w7E2l2AAAAAi/cute-love.gif" class="final-img">
 
       <canvas id="confetti"></canvas>
-
     </section>
 
   </div>
