@@ -73,7 +73,7 @@ body{
 
 /* LOADING SCREEN */
 #loading-screen h2{
-  margin-top: 20px;
+  margin-top: 4px; /* FIXED: Significantly decreased from 20px to move the line up close to the image */
   font-family: 'Pacifico', cursive;
   font-size: calc(1.1rem + 0.8vw); 
   text-align: center;
