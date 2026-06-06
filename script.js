@@ -83,15 +83,19 @@ document.addEventListener("touchend", (e) => {
                 // 1. Play the cutting slice sound asset instantly
                 sliceSound.play().catch(err => console.log("Audio waiting for user gesture:", err));
                 
-                // 2. FIXED: Removed the line changing .src to load2_circle-crop.png
-                // Instead, we just trigger the visual cut/shake effect on the cake itself!
+                // 2. FIXED: Force the browser to reset the looping GIF animation right from frame 1
+                const currentSrc = cakeImg.src;
+                cakeImg.src = "";
+                cakeImg.src = currentSrc;
+                
+                // 3. Apply the custom shake-and-fade animation class
                 cakeImg.classList.add("cake-cut-effect");
             }
             
-            // 3. Leave the cake visible on screen with the slice effect for 1.2 seconds, then turn to Page 3 Gallery
+            // 4. FIXED: Reduced timer to 600ms so it cuts and seamlessly snaps right into Page 3 Gallery
             setTimeout(() => {
                 nextPage(); 
-            }, 1200);
+            }, 600);
         }
     }
 });
