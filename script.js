@@ -1,4 +1,3 @@
-
 /* =========================
 FILE: script.js
 ========================= */
@@ -83,15 +82,13 @@ document.addEventListener("touchend", (e) => {
             if (cakeImg) {
                 // 1. Play the cutting slice sound asset instantly
                 sliceSound.play().catch(err => console.log("Audio waiting for user gesture:", err));
-
-                // 2. Change the whole cake GIF into the cut image file instantly
-                cakeImg.src = "load2_circle-crop.png"; 
                 
-                // 3. Inject the CSS splash animation shake class
+                // 2. FIXED: Removed the line changing .src to load2_circle-crop.png
+                // Instead, we just trigger the visual cut/shake effect on the cake itself!
                 cakeImg.classList.add("cake-cut-effect");
             }
             
-            // 4. Leave the cut cake visible on screen for 1.2 seconds, then turn to Page 3 Gallery
+            // 3. Leave the cake visible on screen with the slice effect for 1.2 seconds, then turn to Page 3 Gallery
             setTimeout(() => {
                 nextPage(); 
             }, 1200);
