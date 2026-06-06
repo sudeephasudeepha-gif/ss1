@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (imgElement) {
         // Change this to whatever image/gif you want her to see BEFORE the loading page starts
-        imgElement.src = "load2-removebg-preview.png"; 
+        imgElement.src = "load2.png"; 
     }
 
     // STEP B: The exact millisecond she clicks this intro screen...
