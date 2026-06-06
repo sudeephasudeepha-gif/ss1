@@ -1,3 +1,4 @@
+
 /* =========================
 FILE: script.js
 ========================= */
@@ -90,9 +91,9 @@ document.addEventListener("touchend", (e) => {
                 cakeImg.classList.add("cake-cut-effect");
             }
             
-            // 4. Leave the cut cake visible on screen for 1.2 seconds, then turn to Page 3
+            // 4. Leave the cut cake visible on screen for 1.2 seconds, then turn to Page 3 Gallery
             setTimeout(() => {
-                nextPage();
+                nextPage(); 
             }, 1200);
         }
     }
