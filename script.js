@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (imgElement) {
         // Change this to whatever image/gif you want her to see BEFORE the loading page starts
-        imgElement.src = "https://media.tenor.com/7UJ8w7E2l2AAAAAi/cute-love.gif"; 
+        imgElement.src = "load2-removebg-preview.png"; 
     }
 
     // STEP B: The exact millisecond she clicks this intro screen...
