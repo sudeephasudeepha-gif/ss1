@@ -6,8 +6,12 @@ let currentPage = 1;
 
 // 1. Setup background music in memory
 const bgMusic = new Audio('song.mp3');
-bgMusic.loop = false; // UPDATED: Audio will no longer loop
+bgMusic.loop = false; // Audio will no longer loop
 bgMusic.volume = 1.0;
+
+// 2. Setup crisp slicing sound effect in memory for the cake page
+const sliceSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2596/2596-84.wav');
+sliceSound.volume = 1.0;
 
 /* --- THE INTRO -> LOADING SCREEN PIPELINE --- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (imgElement) {
         imgElement.src = "load2_circle-crop.png"; 
-        // UPDATED: Dynamically applies the larger size class for the cropped circle image
+        // Dynamically applies the larger size class for the cropped circle image
         imgElement.className = "kitty load2_circle-crop-img";
     }
 
@@ -37,13 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (imgElement) {
             imgElement.src = "load1.png"; 
-            // UPDATED: Dynamically switches to the larger size class for load1
+            // Dynamically switches to the larger size class for load1
             imgElement.className = "kitty load1-img";
         }
 
         // 3. Keep her on this loading screen with the music playing for 3 seconds, then reveal Page 1
         setTimeout(() => {
-            // FIXED: Uses classList instead of style.display to align perfectly with your 4:3 CSS structure
             loadingScreen.classList.add("hidden"); 
             document.getElementById("main-content").classList.remove("hidden");
         }, 3000);
@@ -60,7 +63,7 @@ function nextPage(){
 }
 
 
-/* SWIPE DETECTION */
+/* SWIPE DETECTION & INTERACTIVE CAKE CUTTING ENGINE */
 let startX = 0;
 
 document.addEventListener("touchstart", (e) => {
@@ -70,9 +73,27 @@ document.addEventListener("touchstart", (e) => {
 document.addEventListener("touchend", (e) => {
     let endX = e.changedTouches[0].clientX;
 
+    // Only run this cake-cutting logic if she is currently looking at Page 2
     if (currentPage === 2) {
+        // Check if the swipe movement crossed the threshold (50px width)
         if (Math.abs(startX - endX) > 50) {
-            nextPage();
+            const cakeImg = document.getElementById("birthday-cake");
+            
+            if (cakeImg) {
+                // 1. Play the cutting slice sound asset instantly
+                sliceSound.play().catch(err => console.log("Audio waiting for user gesture:", err));
+
+                // 2. Change the whole cake GIF into the cut image file instantly
+                cakeImg.src = "load2_circle-crop.png"; 
+                
+                // 3. Inject the CSS splash animation shake class
+                cakeImg.classList.add("cake-cut-effect");
+            }
+            
+            // 4. Leave the cut cake visible on screen for 1.2 seconds, then turn to Page 3
+            setTimeout(() => {
+                nextPage();
+            }, 1200);
         }
     }
 });
