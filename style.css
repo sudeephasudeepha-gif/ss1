@@ -1,3 +1,4 @@
+
 /* =======================================================
    FILE: style.css
    PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
@@ -80,6 +81,14 @@ body{
   padding: 0 15px;
   color: #ff4fa0;
   animation: blink 1s infinite;
+}
+
+/* Size increase rules specifically for load1.png */
+.load1-img {
+  width: 36%;
+  min-width: 180px;
+  max-width: 260px;
+  height: auto;
 }
 
 .kitty{
@@ -257,6 +266,14 @@ button:hover{
     line-height: 1.3 !important;
   }
 
+  /* Target scaling for load1 image on mobile screens */
+  .load1-img {
+    width: 125px !important;
+    min-width: 125px !important;
+    margin-bottom: 6px !important;
+    height: auto !important;
+  }
+
   .kitty, .cute-img, .final-img {
     width: 55px !important;
     min-width: 55px !important;
@@ -292,3 +309,7 @@ button:hover{
     font-size: 10px !important; /* Reduced from 11px */
   }
 }
+
+
+> **Reminder:** Make sure that the loading image tag inside your HTML markup includes this matching class name so the properties sync properly:
+> `<img src="load1.png" class="load1-img" alt="Loading...">`
