@@ -1,6 +1,4 @@
-Here is your updated CSS file. I have directly injected the custom font sizing for the `#wrap` container right below its definition, and added the override inside the mobile media query so it stays compact on smaller devices.
 
-```css
 /* =======================================================
    FILE: style.css
    PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
@@ -296,4 +294,3 @@ button:hover{
   }
 }
 
-```
