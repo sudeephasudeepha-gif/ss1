@@ -1,208 +1,350 @@
-/* =========================
-FILE: style.css
-========================= */
+Here is your updated **`style.css`** based directly on the original code layout you provided.
+
+I have applied the universal 4:3 container aspect ratio changes. All elements now fit cleanly as a horizontal rectangle with black margins on the top and bottom on mobile screens, gray text has been updated to match your signature pink color (`#ff4fa0`), and the canvas system elements for your night-sky moon page (`#wrap`) are beautifully integrated so everything scales identically:
+
+```css
+/* =======================================================
+   FILE: style.css
+   PROJECT: Sarah's Birthday Box - Unified Responsive 4:3 Engine
+========================================================= */
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body{
+  background: #000; /* Outer background is completely black for the upper/down bars */
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: #ff4fa0; /* Your signature text color selection */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
 
-  background:#f8e6ee;
-  font-family:'Poppins',sans-serif;
-  overflow:hidden;
-  color:#ff4fa0;
+/* UTILITY CLASS */
+.hidden{
+  display: none !important;
+}
+
+/* =======================================================
+   THE UNIFIED 4:3 CONTAINER ENGINE
+   Locks aspect-ratio and presentation framing identically
+   across loading, main content panels, and the starry background wrap.
+========================================================= */
+#loading-screen,
+#main-content,
+#wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  aspect-ratio: 4 / 3;
+
+  /* Strict boundaries to fit inside mobile and desktop frames perfectly */
+  width: min(100vw, calc(100vh * 4 / 3));
+  height: min(100vh, calc(100vw * 3 / 4));
+
+  overflow: hidden;
+  border-radius: 20px; /* Modern rectangle with smooth rounded corners */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* INDIVIDUAL PANEL SCHEMES */
+#loading-screen,
+#main-content {
+  background: #f8e6ee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrap {
+  background: #000 url("../img2.png") center center/cover no-repeat;
+  color: white;
+  display: block;
 }
 
 /* LOADING SCREEN */
-
-#loading-screen{
-
-  width:100%;
-  height:100vh;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-
-  background:#f8e6ee;
-}
-
 #loading-screen h2{
-
-  margin-top:20px;
-  font-family:'Pacifico',cursive;
-  font-size:35px;
-
+  margin-top: 20px;
+  font-family: 'Pacifico', cursive;
+  font-size: calc(1.4rem + 1vw);
+  text-align: center;
+  padding: 0 15px;
+  color: #ff4fa0;
   animation: blink 1s infinite;
 }
 
 .kitty{
-  width:150px;
+  width: 22%;
+  min-width: 110px;
+  max-width: 150px;
 }
 
 @keyframes blink{
-
   50%{
-    opacity:0.5;
+    opacity: 0.5;
   }
 }
 
-/* MAIN */
-
-.hidden{
-  display:none;
-}
-
+/* PAGES STRUCTURE INSIDE MAIN CONTENT */
 .page{
-
-  width:100%;
-  height:100vh;
-
-  display:none;
-
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-
-  text-align:center;
-
-  padding:20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #f8e6ee; /* Keeps background uniform across all sliding transitions */
 }
 
-.active{
-  display:flex;
+.page.active{
+  display: flex;
 }
 
 h1{
-
-  font-family:'Pacifico',cursive;
-  font-size:45px;
-
-  margin-bottom:20px;
+  font-family: 'Pacifico', cursive;
+  font-size: calc(1.8rem + 1.2vw);
+  margin-bottom: 20px;
+  padding: 0 10px;
+  color: #ff4fa0;
 }
 
 p{
-  color:#555;
-  font-size:18px;
-  margin-top:10px;
+  color: #ff4fa0; /* Updated: Changed from gray (#555) to matching pink */
+  font-size: calc(0.9rem + 0.3vw);
+  margin-top: 10px;
 }
 
 /* BUTTON */
-
 button{
-
-  margin-top:30px;
-
-  padding:14px 30px;
-
-  border:none;
-  border-radius:40px;
-
-  background:linear-gradient(45deg,#ff7eb3,#ff4fa0);
-
-  color:white;
-
-  font-size:18px;
-  cursor:pointer;
-
-  transition:0.3s;
-
-  box-shadow:0 5px 20px rgba(255,79,160,0.4);
+  margin-top: 30px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(45deg, #ff7eb3, #ff4fa0);
+  color: white;
+  font-size: calc(0.9rem + 0.3vw);
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(255, 79, 160, 0.4);
+  z-index: 10;
 }
 
 button:hover{
-
-  transform:scale(1.05);
+  transform: scale(1.05);
 }
 
 /* IMAGES */
-
 .cute-img{
-
-  width:180px;
+  width: 22%;
+  min-width: 120px;
+  max-width: 180px;
 }
 
 .cake{
-
-  width:250px;
+  width: 30%;
+  min-width: 160px;
+  max-width: 250px;
 }
 
 .gallery{
-
-  display:flex;
-  gap:20px;
-  margin-top:20px;
-  flex-wrap:wrap;
-  justify-content:center;
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
 .gallery img{
-
-  width:200px;
-  height:260px;
-
-  object-fit:cover;
-
-  border-radius:20px;
-
-  box-shadow:0 5px 20px rgba(0,0,0,0.15);
-
-  transition:0.3s;
+  width: 28%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
 }
 
 .gallery img:hover{
-
-  transform:scale(1.05);
+  transform: scale(1.05);
 }
 
 /* MESSAGE CARD */
-
 .message-card{
-
-  width:80%;
-  max-width:500px;
-
-  background:#ffeef5;
-
-  padding:30px;
-
-  border-radius:25px;
-
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  width: 85%;
+  max-width: 500px;
+  background: #ffeef5;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .message-card p{
-
-  line-height:1.8;
+  line-height: 1.8;
+  color: #ff4fa0; /* Overridden to match your chosen primary color */
 }
 
 /* FINAL */
-
 .final-img{
-
-  width:250px;
+  width: 30%;
+  min-width: 160px;
+  max-width: 250px;
 }
 
-/* MOBILE */
+/* TREE ANIMATION CANVAS PLATFORM AND OVERLAYS */
+#canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
 
-@media(max-width:768px){
+#text {
+  position: absolute;
+  top: 15%;
+  left: 8%;
+  width: 44%;
+  text-align: left;
+  z-index: 5;
+}
+
+#code {
+  display: none;
+  color: rgb(196, 255, 255);
+  font-size: clamp(14px, 2.2vw, 24px);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+#clock-box {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-size: clamp(12px, 2.8vw, 24px);
+  color: #fff;
+  z-index: 5;
+  text-align: center;
+}
+
+#clock .digit {
+  font-size: clamp(20px, 4.5vw, 52px);
+  font-weight: bold;
+}
+
+#message-box {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  font-size: clamp(12px, 2.5vw, 22px);
+  color: #fff;
+  z-index: 5;
+}
+
+#confetti{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* =======================================================
+   MOBILE ADAPTIVE ENGINE
+========================================================= */
+@media(max-width: 768px){
+  #loading-screen,
+  #main-content,
+  #wrap {
+    /* Set horizontal box size to create top/bottom letterbox black bars */
+    width: 90vw !important;
+    height: calc(90vw * 3 / 4) !important;
+    
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    
+    border-radius: 20px !important;
+    padding: 10px !important;
+  }
+
+  .page {
+    background: #f8e6ee !important;
+  }
 
   h1{
-    font-size:32px;
+    font-size: calc(1.1rem + 1.5vw) !important;
+    line-height: 1.3 !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+  }
+
+  p, #code {
+    font-size: calc(0.72rem + 0.5vw) !important;
+    line-height: 1.4 !important;
+    margin-top: 2px !important;
+  }
+
+  .kitty, .cute-img, .final-img {
+    width: 55px !important;
+    min-width: 55px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .cake {
+    width: 80px !important;
+    min-width: 80px !important;
+    margin-bottom: 2px !important;
   }
 
   .gallery img{
-
-    width:150px;
-    height:200px;
+    width: 28% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important;
+    border-radius: 10px !important;
   }
 
   .message-card{
+    width: 90% !important;
+    padding: 15px !important;
+    border-radius: 15px !important;
+  }
+  
+  .message-card p {
+    line-height: 1.4 !important;
+  }
 
-    width:95%;
+  button {
+    margin-top: 8px !important;
+    padding: 6px 18px !important;
+    font-size: 11px !important;
   }
 }
+
+```
