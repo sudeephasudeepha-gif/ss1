@@ -4,113 +4,115 @@ FILE: script.js
 
 let currentPage = 1;
 
-/* LOADING SCREEN */
+// 1. Create the audio element immediately in memory
+const bgMusic = new Audio('song.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 1.0;
 
-setTimeout(() => {
+/* --- THE LOADING SCREEN AUTOMATIC TRICK --- */
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    const textElement = loadingScreen.querySelector("h2");
 
-  document.getElementById("loading-screen").style.display = "none";
+    // A. Change the loading text to something exciting that Sarah will want to tap
+    if (textElement) {
+        textElement.innerHTML = "Click anywhere to open Sarah's Birthday Box! ✨🎁";
+    }
 
-  document.getElementById("main-content").classList.remove("hidden");
+    // B. The exact millisecond she taps the loading screen, the music starts, 
+    // and the 3-second loading countdown begins!
+    loadingScreen.addEventListener("click", () => {
+        
+        // Start the song immediately on the loading page!
+        bgMusic.play().catch(err => console.log("Audio blocked by browser:", err));
+        
+        if (textElement) {
+            textElement.innerHTML = "Loading your birthday surprise.... 💖";
+        }
 
-},3000);
+        // Keep her on the loading screen with the music playing for 3 seconds
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+            document.getElementById("main-content").classList.remove("hidden");
+        }, 3000);
+        
+    }, { once: true }); // Ensure this tap trigger only runs once
+});
 
 
 /* NEXT PAGE */
-
 function nextPage(){
-
-  document.getElementById(`page${currentPage}`).classList.remove("active");
-
-  currentPage++;
-
-  document.getElementById(`page${currentPage}`).classList.add("active");
+    document.getElementById(`page${currentPage}`).classList.remove("active");
+    currentPage++;
+    document.getElementById(`page${currentPage}`).classList.add("active");
 }
+
 
 /* SWIPE DETECTION */
-
 let startX = 0;
 
-document.addEventListener("touchstart",(e)=>{
-
-  startX = e.touches[0].clientX;
+document.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
 });
 
-document.addEventListener("touchend",(e)=>{
+document.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
 
-  let endX = e.changedTouches[0].clientX;
-
-  if(currentPage === 2){
-
-    if(Math.abs(startX - endX) > 50){
-
-      nextPage();
+    if (currentPage === 2) {
+        if (Math.abs(startX - endX) > 50) {
+            nextPage();
+        }
     }
-  }
 });
+
 
 /* FINAL PAGE */
-
 function showFinal(){
-
-  nextPage();
-
-  startConfetti();
+    nextPage();
+    startConfetti();
 }
 
+
 /* CONFETTI */
-
 function startConfetti(){
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
 
-  const canvas = document.getElementById("confetti");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  const ctx = canvas.getContext("2d");
+    let pieces = [];
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    for (let i = 0; i < 150; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 6 + 2,
+            d: Math.random() * 150
+        });
+    }
 
-  let pieces = [];
+    function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#ff4fa0";
 
-  for(let i=0;i<150;i++){
+        pieces.forEach((p) => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            ctx.fill();
+        });
 
-    pieces.push({
+        update();
+    }
 
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      r:Math.random()*6+2,
-      d:Math.random()*150
-    });
-  }
+    function update(){
+        pieces.forEach((p) => {
+            p.y += 2;
+            if (p.y > canvas.height) {
+                p.y = 0;
+            }
+        });
+    }
 
-  function draw(){
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    ctx.fillStyle = "#ff4fa0";
-
-    pieces.forEach((p)=>{
-
-      ctx.beginPath();
-
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
-
-      ctx.fill();
-    });
-
-    update();
-  }
-
-  function update(){
-
-    pieces.forEach((p)=>{
-
-      p.y += 2;
-
-      if(p.y > canvas.height){
-
-        p.y = 0;
-      }
-    });
-  }
-
-  setInterval(draw,20);
+    setInterval(draw, 20);
 }
