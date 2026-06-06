@@ -4,39 +4,47 @@ FILE: script.js
 
 let currentPage = 1;
 
-// 1. Create the audio element immediately in memory
+// 1. Setup background music in memory
 const bgMusic = new Audio('song.mp3');
 bgMusic.loop = true;
 bgMusic.volume = 1.0;
 
-/* --- THE LOADING SCREEN AUTOMATIC TRICK --- */
+/* --- THE INTRO -> LOADING SCREEN PIPELINE --- */
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById("loading-screen");
     const textElement = loadingScreen.querySelector("h2");
+    const imgElement = loadingScreen.querySelector(".kitty");
 
-    // A. Change the loading text to something exciting that Sarah will want to tap
+    // STEP A: Prepare the Intro Page State right away
     if (textElement) {
         textElement.innerHTML = "Click anywhere to open Sarah's Birthday Box! ✨🎁";
     }
+    if (imgElement) {
+        // Change this to whatever image/gif you want her to see BEFORE the loading page starts
+        imgElement.src = "https://media.tenor.com/7UJ8w7E2l2AAAAAi/cute-love.gif"; 
+    }
 
-    // B. The exact millisecond she taps the loading screen, the music starts, 
-    // and the 3-second loading countdown begins!
+    // STEP B: The exact millisecond she clicks this intro screen...
     loadingScreen.addEventListener("click", () => {
         
-        // Start the song immediately on the loading page!
-        bgMusic.play().catch(err => console.log("Audio blocked by browser:", err));
+        // 1. Play the music instantly!
+        bgMusic.play().catch(err => console.log("Audio pipeline waiting:", err));
         
+        // 2. NOW change the screen into the actual loading page state (load1.png)
         if (textElement) {
             textElement.innerHTML = "Loading your birthday surprise.... 💖";
         }
+        if (imgElement) {
+            imgElement.src = "load1.png"; // Puts your original kitty loader back
+        }
 
-        // Keep her on the loading screen with the music playing for 3 seconds
+        // 3. Keep her on this loading screen with the music playing for 3 seconds, then reveal Page 1
         setTimeout(() => {
             loadingScreen.style.display = "none";
             document.getElementById("main-content").classList.remove("hidden");
         }, 3000);
         
-    }, { once: true }); // Ensure this tap trigger only runs once
+    }, { once: true }); // Guarantees the click handler only runs once
 });
 
 
