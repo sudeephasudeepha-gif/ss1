@@ -2,55 +2,79 @@
 FILE: style.css
 ========================= */
 
+/* RESET */
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY FRAMEWORK */
 html,
 body{
   width: 100%;
   height: 100%;
-}
-
-body{
+  overflow: hidden;
   background: #000;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  color: #ff4fa0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
 }
 
-/* UTILITY CLASS - Force-hides layers cleanly */
+/* UTILITY CLASS - Cleanly toggles layers out of the layout */
 .hidden {
   display: none !important;
 }
 
-/* 4:3 Aspect Container Engine */
+
+/* =======================================================
+   THE UNIFIED 4:3 DIMENSION ENGINE
+   This sets the EXACT same width and height across all three major elements,
+   positioning them seamlessly over each other while ignoring backgrounds.
+========================================================= */
 #loading-screen,
-#main-content {
-  width: 100%;
-  max-width: 800px;
+#main-content,
+#wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   aspect-ratio: 4 / 3;
-  max-height: calc(100vh - 20px); 
-  
-  position: relative;
-  background: #f8e6ee;
+
+  /* Strict responsive 4:3 layout equations taken directly from your canvas logic */
+  width: min(100vw, calc(100vh * 4 / 3));
+  height: min(100vh, calc(100vw * 3 / 4));
+
   overflow: hidden;
   border-radius: 20px;
-  
+}
+
+
+/* =======================================================
+   INDIVIDUAL LAYER BACKDROPS & FLEX BEHAVIORS
+========================================================= */
+
+/* Pink Theme Pages */
+#loading-screen,
+#main-content {
+  background: #f8e6ee;
+  color: #ff4fa0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* LOADING / INTRO SCREEN DETAILS */
+/* Starry Canvas Tree Page */
+#wrap {
+  background: url("../img2.png") center center/cover no-repeat;
+  color: white;
+  display: block; /* Preserves absolute layout for tree structures */
+}
+
+
+/* =======================================================
+   LOADING SCREEN ARCHITECTURE
+========================================================= */
 #loading-screen h2{
   margin-top: 20px;
   font-family: 'Pacifico', cursive;
@@ -72,7 +96,10 @@ body{
   }
 }
 
-/* PAGES STRUCTURE INSIDE MAIN CONTENT */
+
+/* =======================================================
+   SLIDABLE PAGE TRACKS
+========================================================= */
 .page{
   width: 100%;
   height: 100%;
@@ -104,7 +131,10 @@ p{
   margin-top: 5px;
 }
 
-/* UNIFORM ACCENT SURPRISE BUTTONS */
+
+/* =======================================================
+   BUTTONS
+========================================================= */
 button{
   margin-top: 20px;
   padding: 12px 28px;
@@ -116,13 +146,17 @@ button{
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0 5px 20px rgba(255,79,160,0.4);
+  z-index: 10;
 }
 
 button:hover{
   transform: scale(1.05);
 }
 
-/* IMAGES & LAYOUT INSIDE 4:3 CARDS */
+
+/* =======================================================
+   CARD PATTERNS & MEDIA GALLERIES
+========================================================= */
 .cute-img,
 .final-img {
   width: 22%;
@@ -137,7 +171,6 @@ button:hover{
   max-width: 240px;
 }
 
-/* ROW FLEX OVERRIDES FOR 3 IMAGES SIDE-BY-SIDE */
 .gallery{
   display: flex;
   gap: 15px;
@@ -160,7 +193,6 @@ button:hover{
   transform: scale(1.05);
 }
 
-/* SWEET MESSAGE DECK CARD */
 .message-card{
   width: 85%;
   max-width: 520px;
@@ -179,7 +211,77 @@ button:hover{
   font-size: calc(0.85rem + 0.2vw);
 }
 
-/* CELEBRATION CANVAS LAYER */
+
+/* =======================================================
+   CANVAS OVERLAYS & TYPED MESSAGE TERMINALS (FROM TREE LOGIC)
+========================================================= */
+#canvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+#text{
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  width: 44%;
+  text-align: left;
+  z-index: 5;
+}
+
+#code{
+  display: none;
+  color: rgb(196, 255, 255);
+  font-size: clamp(16px, 2.2vw, 24px);
+  line-height: 1.7;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+#clock-box{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-size: clamp(14px, 2.8vw, 24px);
+  color: #fff;
+  z-index: 5;
+  text-align: center;
+}
+
+#clock{
+  margin-left: 10px;
+}
+
+#clock .digit{
+  font-size: clamp(24px, 4.5vw, 52px);
+  font-weight: bold;
+}
+
+#message-box{
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  font-size: clamp(14px, 2.5vw, 22px);
+  color: #fff;
+  z-index: 5;
+}
+
+#error{
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+  color: #ff0033;
+}
+
 #confetti{
   position: absolute;
   top: 0;
@@ -187,4 +289,5 @@ button:hover{
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 100;
 }
