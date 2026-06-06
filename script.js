@@ -6,7 +6,7 @@ let currentPage = 1;
 
 // 1. Setup background music in memory
 const bgMusic = new Audio('song.mp3');
-bgMusic.loop = true;
+bgMusic.loop = false; // UPDATED: Audio will no longer loop
 bgMusic.volume = 1.0;
 
 /* --- THE INTRO -> LOADING SCREEN PIPELINE --- */
@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
         textElement.innerHTML = "Click anywhere to open Sarah's Birthday Box! ✨🎁";
     }
     if (imgElement) {
-        // Change this to whatever image/gif you want her to see BEFORE the loading page starts
         imgElement.src = "load2_circle-crop.png"; 
+        // UPDATED: Dynamically applies the larger size class for the cropped circle image
+        imgElement.className = "kitty load2_circle-crop-img";
     }
 
     // STEP B: The exact millisecond she clicks this intro screen...
@@ -35,7 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
             textElement.innerHTML = "Loading your birthday surprise.... 💖";
         }
         if (imgElement) {
-            imgElement.src = "load1.png"; // Puts your original kitty loader back
+            imgElement.src = "load1.png"; 
+            // UPDATED: Dynamically switches to the larger size class for load1
+            imgElement.className = "kitty load1-img";
         }
 
         // 3. Keep her on this loading screen with the music playing for 3 seconds, then reveal Page 1
