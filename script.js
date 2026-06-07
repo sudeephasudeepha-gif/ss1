@@ -123,92 +123,50 @@ function startConfetti() {
 
     let hearts = [];
 
-    /* Create Hearts */
+    // Create hearts
     for (let i = 0; i < 120; i++) {
         hearts.push({
             x: Math.random() * canvas.width,
             y: Math.random() * -canvas.height,
-            size: Math.random() * 3 + 8, // 10px - 14px
+
+            // ❤️ emoji size
+            size: Math.random() * 2 + 16,
+
             speedX: Math.random() * 1.2 - 0.6,
             speedY: Math.random() * 1.5 + 0.8,
-            opacity: Math.random() * 0.4 + 0.6,
-            color: Math.random() > 0.5 ? "#ff4d6d" : "#ff8080"
+
+            opacity: Math.random() * 0.4 + 0.6
         });
     }
 
-    /* Draw Heart */
-    function drawHeart(x, y, size, color, opacity) {
-        ctx.save();
-
-        ctx.translate(x, y);
-
-        // Narrow width + taller height
-        ctx.scale(size / 80, size / 20);
-
-        ctx.beginPath();
-
-        ctx.moveTo(0, -15);
-
-        ctx.bezierCurveTo(
-            0, -35,
-            -20, -35,
-            -20, 0
-        );
-
-        // Left side
-        ctx.bezierCurveTo(
-            -20, 25,
-            0, 50,
-            0, 80
-        );
-
-        // Right side
-        ctx.bezierCurveTo(
-            0, 50,
-            20, 25,
-            20, 0
-        );
-
-        ctx.bezierCurveTo(
-            20, -35,
-            0, -35,
-            0, -15
-        );
-
-        ctx.closePath();
-
-        ctx.fillStyle = color;
-        ctx.globalAlpha = opacity;
-        ctx.fill();
-
-        ctx.restore();
-    }
-
-    /* Draw Animation */
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         hearts.forEach((heart) => {
-            drawHeart(
-                heart.x,
-                heart.y,
-                heart.size,
-                heart.color,
-                heart.opacity
-            );
+            ctx.save();
+
+            ctx.globalAlpha = heart.opacity;
+
+            ctx.font = `${heart.size}px Arial`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Draw actual ❤️ emoji
+            ctx.fillText("❤️", heart.x, heart.y);
+
+            ctx.restore();
         });
 
         update();
         requestAnimationFrame(draw);
     }
 
-    /* Update Positions */
     function update() {
         hearts.forEach((heart) => {
             heart.y += heart.speedY;
             heart.x += heart.speedX;
 
-            // Respawn at top
+            // Respawn from top
             if (heart.y > canvas.height + 50) {
                 heart.y = -50;
                 heart.x = Math.random() * canvas.width;
