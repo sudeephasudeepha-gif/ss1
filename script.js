@@ -109,84 +109,71 @@ function showFinal(){
 
 
 /* FALLING HEARTS CONFETTI ENGINE (UPGRADED SHAPE & COLOR) */
-function startConfetti(){
+/* FALLING HEARTS CONFETTI ENGINE */
+function startConfetti() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
 
-    // Seamless full-screen responsiveness
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
+
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
     let hearts = [];
-    // UPDATED: A pure, vibrant RED palette for the princess theme
-    const colors = ['#dc2626', '#b91c1c', '#ef4444', '#f87171', '#991b1b', '#e11d48'];
 
-    // Generate 80 unique heart particles
+    // Create hearts
     for (let i = 0; i < 80; i++) {
         hearts.push({
             x: Math.random() * canvas.width,
-            y: Math.random() * -canvas.height,          // Spawns them out of view above the screen
-            size: Math.random() * 12 + 10,               // Re-scaled variation in heart size
-            speedX: Math.random() * 2 - 1,               // Gentle drift left and right
-            speedY: Math.random() * 2 + 1.5,             // Custom downward velocity
-            color: colors[Math.floor(Math.random() * colors.length)],
-            opacity: Math.random() * 0.4 + 0.6          // Provides a nice layering depth effect
+            y: Math.random() * -canvas.height,
+            size: Math.random() * 20 + 20, // 20-40px
+            speedX: Math.random() * 2 - 1,
+            speedY: Math.random() * 2 + 1.5,
+            opacity: Math.random() * 0.4 + 0.6
         });
     }
 
-    function draw(){
+    function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         hearts.forEach((p) => {
             ctx.save();
-            ctx.globalAlpha = p.opacity;
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            
-            // UPDATED: Standardized heart plumpness math by reducing width relative to height
-            let topCurveHeight = p.size * 0.3;
-            ctx.moveTo(p.x, p.y + topCurveHeight);
-            
-            // Top Left Curve - Plumper Ratio
-            ctx.bezierCurveTo(
-                p.x - p.size * 0.35, p.y - p.size * 0.45, // Control 1
-                p.x - p.size * 0.85, p.y + p.size * 0.25, // Control 2
-                p.x, p.y + p.size                         // Target Point
-            );
 
-            // Top Right Curve - Plumper Ratio (symmetrical mirror)
-            ctx.bezierCurveTo(
-                p.x + p.size * 0.85, p.y + p.size * 0.25, // Control 1
-                p.x + p.size * 0.35, p.y - p.size * 0.45, // Control 2
-                p.x, p.y + topCurveHeight                 // Target Point (back to top)
-            );
-            
-            ctx.closePath();
-            ctx.fill();
+            ctx.globalAlpha = p.opacity;
+            ctx.font = `${p.size}px Arial`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Draw actual heart emoji
+            ctx.fillText("❤️", p.x, p.y);
+
             ctx.restore();
         });
 
         update();
-        requestAnimationFrame(draw); // High frame-rate standard loop for buttery smooth falling
+        requestAnimationFrame(draw);
     }
 
-    function update(){
+    function update() {
         hearts.forEach((p) => {
             p.y += p.speedY;
             p.x += p.speedX;
 
-            // Loop hearts back to the top seamlessly when they pass the bottom border
-            if (p.y > canvas.height) {
-                p.y = -p.size;
+            // Reset when heart goes off-screen
+            if (p.y > canvas.height + 50) {
+                p.y = -50;
                 p.x = Math.random() * canvas.width;
             }
+
+            // Bounce from sides
+            if (p.x < -50) p.x = canvas.width + 50;
+            if (p.x > canvas.width + 50) p.x = -50;
         });
     }
 
-    // Kicks off the smooth frame loop
     requestAnimationFrame(draw);
 }
+    
