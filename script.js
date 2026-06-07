@@ -130,7 +130,7 @@ function startConfetti() {
             y: Math.random() * -canvas.height,
 
             // ❤️ size
-            size: Math.random() * 2 + 16,
+            size: Math.random() * 2 + 12,
 
             speedX: Math.random() * 1.2 - 0.6,
             speedY: Math.random() * 1.5 + 0.8,
