@@ -154,7 +154,7 @@ function startConfetti() {
             ctx.translate(heart.x, heart.y);
 
             // Make heart slightly taller
-            ctx.scale(1, 1.3);
+            ctx.scale(1, 1.4);
 
             // Draw actual emoji
             ctx.fillText("❤️", 0, 0);
