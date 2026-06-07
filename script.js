@@ -108,7 +108,6 @@ function showFinal(){
 }
 
 
-/* FALLING HEARTS CONFETTI ENGINE (UPGRADED SHAPE & COLOR) */
 /* FALLING HEARTS CONFETTI ENGINE */
 function startConfetti() {
     const canvas = document.getElementById("confetti");
@@ -125,32 +124,74 @@ function startConfetti() {
     let hearts = [];
 
     // Create hearts
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 120; i++) {
         hearts.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * -canvas.height,
-    size: Math.random() * 6 + 12, // smaller hearts
-    speedX: Math.random() * 1.2 - 0.6, // gentler movement
-    speedY: Math.random() * 1.5 + 0.8, // slower fall
-    opacity: Math.random() * 0.4 + 0.6
-});
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            size: Math.random() * 6 + 12, // 12px - 18px
+            speedX: Math.random() * 1.2 - 0.6,
+            speedY: Math.random() * 1.5 + 0.8,
+            opacity: Math.random() * 0.4 + 0.6,
+            color: Math.random() > 0.5 ? "#ff4d6d" : "#ff8080"
+        });
+    }
+
+    function drawHeart(x, y, size, color, opacity) {
+        ctx.save();
+
+        ctx.translate(x, y);
+
+        // Taller and slimmer heart
+        ctx.scale(size / 60, size / 35);
+
+        ctx.beginPath();
+
+        ctx.moveTo(0, -15);
+
+        ctx.bezierCurveTo(
+            0, -35,
+            -20, -35,
+            -20, 0
+        );
+
+        ctx.bezierCurveTo(
+            -20, 20,
+            0, 40,
+            0, 60
+        );
+
+        ctx.bezierCurveTo(
+            0, 40,
+            20, 20,
+            20, 0
+        );
+
+        ctx.bezierCurveTo(
+            20, -35,
+            0, -35,
+            0, -15
+        );
+
+        ctx.closePath();
+
+        ctx.fillStyle = color;
+        ctx.globalAlpha = opacity;
+        ctx.fill();
+
+        ctx.restore();
     }
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         hearts.forEach((p) => {
-            ctx.save();
-
-            ctx.globalAlpha = p.opacity;
-            ctx.font = `${p.size}px Arial`;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-
-            // Draw actual heart emoji
-            ctx.fillText("❤️", p.x, p.y);
-
-            ctx.restore();
+            drawHeart(
+                p.x,
+                p.y,
+                p.size,
+                p.color,
+                p.opacity
+            );
         });
 
         update();
@@ -162,13 +203,11 @@ function startConfetti() {
             p.y += p.speedY;
             p.x += p.speedX;
 
-            // Reset when heart goes off-screen
             if (p.y > canvas.height + 50) {
                 p.y = -50;
                 p.x = Math.random() * canvas.width;
             }
 
-            // Bounce from sides
             if (p.x < -50) p.x = canvas.width + 50;
             if (p.x > canvas.width + 50) p.x = -50;
         });
@@ -176,4 +215,3 @@ function startConfetti() {
 
     requestAnimationFrame(draw);
 }
-    
