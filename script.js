@@ -127,13 +127,13 @@ function startConfetti() {
     // Create hearts
     for (let i = 0; i < 80; i++) {
         hearts.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * -canvas.height,
-            size: Math.random() * 20 + 20, // 20-40px
-            speedX: Math.random() * 2 - 1,
-            speedY: Math.random() * 2 + 1.5,
-            opacity: Math.random() * 0.4 + 0.6
-        });
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    size: Math.random() * 8 + 6, // smaller hearts
+    speedX: Math.random() * 1.2 - 0.6, // gentler movement
+    speedY: Math.random() * 1.5 + 0.8, // slower fall
+    opacity: Math.random() * 0.4 + 0.6
+});
     }
 
     function draw() {
