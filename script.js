@@ -125,11 +125,11 @@ function startConfetti() {
     let hearts = [];
 
     // Create hearts
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 100; i++) {
         hearts.push({
     x: Math.random() * canvas.width,
     y: Math.random() * -canvas.height,
-    size: Math.random() * 8 + 6, // smaller hearts
+    size: Math.random() * 6 + 12, // smaller hearts
     speedX: Math.random() * 1.2 - 0.6, // gentler movement
     speedY: Math.random() * 1.5 + 0.8, // slower fall
     opacity: Math.random() * 0.4 + 0.6
