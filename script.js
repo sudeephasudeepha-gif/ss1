@@ -128,7 +128,7 @@ function startConfetti() {
         hearts.push({
             x: Math.random() * canvas.width,
             y: Math.random() * -canvas.height,
-            size: Math.random() * 4 + 10, // 10px - 14px
+            size: Math.random() * 3 + 8, // 10px - 14px
             speedX: Math.random() * 1.2 - 0.6,
             speedY: Math.random() * 1.5 + 0.8,
             opacity: Math.random() * 0.4 + 0.6,
