@@ -6,7 +6,7 @@ let currentPage = 1;
 
 // 1. Setup background music in memory
 const bgMusic = new Audio('song.mp3');
-bgMusic.loop = false; // Audio will no longer loop
+bgMusic.loop = false;
 bgMusic.volume = 1.0;
 
 // 2. Setup crisp slicing sound effect in memory for the cake page
@@ -108,7 +108,7 @@ function showFinal(){
 }
 
 
-/* FALLING HEARTS CONFETTI ENGINE */
+/* FALLING HEARTS CONFETTI ENGINE (UPGRADED SHAPE & COLOR) */
 function startConfetti(){
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
@@ -122,15 +122,15 @@ function startConfetti(){
     window.addEventListener('resize', resizeCanvas);
 
     let hearts = [];
-    // Vibrant pink, red, and rose palette for the princess theme
-    const colors = ['#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#c9184a'];
+    // UPDATED: A pure, vibrant RED palette for the princess theme
+    const colors = ['#dc2626', '#b91c1c', '#ef4444', '#f87171', '#991b1b', '#e11d48'];
 
     // Generate 80 unique heart particles
     for (let i = 0; i < 80; i++) {
         hearts.push({
             x: Math.random() * canvas.width,
             y: Math.random() * -canvas.height,          // Spawns them out of view above the screen
-            size: Math.random() * 14 + 10,               // Controls variation in heart scale
+            size: Math.random() * 12 + 10,               // Re-scaled variation in heart size
             speedX: Math.random() * 2 - 1,               // Gentle drift left and right
             speedY: Math.random() * 2 + 1.5,             // Custom downward velocity
             color: colors[Math.floor(Math.random() * colors.length)],
@@ -147,22 +147,22 @@ function startConfetti(){
             ctx.fillStyle = p.color;
             ctx.beginPath();
             
-            // Mathematical curve coordinates to draw a vector heart on canvas
+            // UPDATED: Standardized heart plumpness math by reducing width relative to height
             let topCurveHeight = p.size * 0.3;
             ctx.moveTo(p.x, p.y + topCurveHeight);
             
-            // Top Left Curve
+            // Top Left Curve - Plumper Ratio
             ctx.bezierCurveTo(
-                p.x - p.size / 2, p.y - p.size / 2, 
-                p.x - p.size, p.y + p.size / 3, 
-                p.x, p.y + p.size
+                p.x - p.size * 0.35, p.y - p.size * 0.45, // Control 1
+                p.x - p.size * 0.85, p.y + p.size * 0.25, // Control 2
+                p.x, p.y + p.size                         // Target Point
             );
 
-            // Top Right Curve
+            // Top Right Curve - Plumper Ratio (symmetrical mirror)
             ctx.bezierCurveTo(
-                p.x + p.size, p.y + p.size / 3, 
-                p.x + p.size / 2, p.y - p.size / 2, 
-                p.x, p.y + topCurveHeight
+                p.x + p.size * 0.85, p.y + p.size * 0.25, // Control 1
+                p.x + p.size * 0.35, p.y - p.size * 0.45, // Control 2
+                p.x, p.y + topCurveHeight                 // Target Point (back to top)
             );
             
             ctx.closePath();
