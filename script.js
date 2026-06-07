@@ -108,46 +108,85 @@ function showFinal(){
 }
 
 
-/* CONFETTI */
+/* FALLING HEARTS CONFETTI ENGINE */
 function startConfetti(){
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Seamless full-screen responsiveness
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    let pieces = [];
+    let hearts = [];
+    // Vibrant pink, red, and rose palette for the princess theme
+    const colors = ['#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#ffccd5', '#c9184a'];
 
-    for (let i = 0; i < 150; i++) {
-        pieces.push({
+    // Generate 80 unique heart particles
+    for (let i = 0; i < 80; i++) {
+        hearts.push({
             x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 6 + 2,
-            d: Math.random() * 150
+            y: Math.random() * -canvas.height,          // Spawns them out of view above the screen
+            size: Math.random() * 14 + 10,               // Controls variation in heart scale
+            speedX: Math.random() * 2 - 1,               // Gentle drift left and right
+            speedY: Math.random() * 2 + 1.5,             // Custom downward velocity
+            color: colors[Math.floor(Math.random() * colors.length)],
+            opacity: Math.random() * 0.4 + 0.6          // Provides a nice layering depth effect
         });
     }
 
     function draw(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#ff4fa0";
 
-        pieces.forEach((p) => {
+        hearts.forEach((p) => {
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.fillStyle = p.color;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            
+            // Mathematical curve coordinates to draw a vector heart on canvas
+            let topCurveHeight = p.size * 0.3;
+            ctx.moveTo(p.x, p.y + topCurveHeight);
+            
+            // Top Left Curve
+            ctx.bezierCurveTo(
+                p.x - p.size / 2, p.y - p.size / 2, 
+                p.x - p.size, p.y + p.size / 3, 
+                p.x, p.y + p.size
+            );
+
+            // Top Right Curve
+            ctx.bezierCurveTo(
+                p.x + p.size, p.y + p.size / 3, 
+                p.x + p.size / 2, p.y - p.size / 2, 
+                p.x, p.y + topCurveHeight
+            );
+            
+            ctx.closePath();
             ctx.fill();
+            ctx.restore();
         });
 
         update();
+        requestAnimationFrame(draw); // High frame-rate standard loop for buttery smooth falling
     }
 
     function update(){
-        pieces.forEach((p) => {
-            p.y += 2;
+        hearts.forEach((p) => {
+            p.y += p.speedY;
+            p.x += p.speedX;
+
+            // Loop hearts back to the top seamlessly when they pass the bottom border
             if (p.y > canvas.height) {
-                p.y = 0;
+                p.y = -p.size;
+                p.x = Math.random() * canvas.width;
             }
         });
     }
 
-    setInterval(draw, 20);
+    // Kicks off the smooth frame loop
+    requestAnimationFrame(draw);
 }
