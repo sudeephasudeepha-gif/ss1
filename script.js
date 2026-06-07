@@ -136,13 +136,14 @@ function startConfetti() {
         });
     }
 
+    // Draw slim tall heart
     function drawHeart(x, y, size, color, opacity) {
         ctx.save();
 
         ctx.translate(x, y);
 
-        // Taller and slimmer heart
-        ctx.scale(size / 60, size / 35);
+        // Slim width + increased height
+        ctx.scale(size / 75, size / 22);
 
         ctx.beginPath();
 
@@ -154,15 +155,17 @@ function startConfetti() {
             -20, 0
         );
 
+        // Left side
         ctx.bezierCurveTo(
-            -20, 20,
-            0, 40,
-            0, 60
+            -20, 25,
+            0, 50,
+            0, 80
         );
 
+        // Right side
         ctx.bezierCurveTo(
-            0, 40,
-            20, 20,
+            0, 50,
+            20, 25,
             20, 0
         );
 
@@ -203,11 +206,13 @@ function startConfetti() {
             p.y += p.speedY;
             p.x += p.speedX;
 
+            // Respawn at top
             if (p.y > canvas.height + 50) {
                 p.y = -50;
                 p.x = Math.random() * canvas.width;
             }
 
+            // Wrap horizontally
             if (p.x < -50) p.x = canvas.width + 50;
             if (p.x > canvas.width + 50) p.x = -50;
         });
