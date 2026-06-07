@@ -129,7 +129,7 @@ function startConfetti() {
             x: Math.random() * canvas.width,
             y: Math.random() * -canvas.height,
 
-            // ❤️ emoji size
+            // ❤️ size
             size: Math.random() * 2 + 16,
 
             speedX: Math.random() * 1.2 - 0.6,
@@ -146,13 +146,18 @@ function startConfetti() {
             ctx.save();
 
             ctx.globalAlpha = heart.opacity;
-
-            ctx.font = `${heart.size}px Arial`;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
+            ctx.font = `${heart.size}px Arial`;
 
-            // Draw actual ❤️ emoji
-            ctx.fillText("❤️", heart.x, heart.y);
+            // Position heart
+            ctx.translate(heart.x, heart.y);
+
+            // Make heart slightly taller
+            ctx.scale(1, 1.15);
+
+            // Draw actual emoji
+            ctx.fillText("❤️", 0, 0);
 
             ctx.restore();
         });
@@ -166,13 +171,13 @@ function startConfetti() {
             heart.y += heart.speedY;
             heart.x += heart.speedX;
 
-            // Respawn from top
+            // Respawn at top
             if (heart.y > canvas.height + 50) {
                 heart.y = -50;
                 heart.x = Math.random() * canvas.width;
             }
 
-            // Wrap left/right
+            // Wrap horizontally
             if (heart.x < -50) {
                 heart.x = canvas.width + 50;
             }
