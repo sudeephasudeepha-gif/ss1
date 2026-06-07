@@ -123,12 +123,12 @@ function startConfetti() {
 
     let hearts = [];
 
-    // Create hearts
+    /* Create Hearts */
     for (let i = 0; i < 120; i++) {
         hearts.push({
             x: Math.random() * canvas.width,
             y: Math.random() * -canvas.height,
-            size: Math.random() * 6 + 12, // 12px - 18px
+            size: Math.random() * 4 + 10, // 10px - 14px
             speedX: Math.random() * 1.2 - 0.6,
             speedY: Math.random() * 1.5 + 0.8,
             opacity: Math.random() * 0.4 + 0.6,
@@ -136,14 +136,14 @@ function startConfetti() {
         });
     }
 
-    // Draw slim tall heart
+    /* Draw Heart */
     function drawHeart(x, y, size, color, opacity) {
         ctx.save();
 
         ctx.translate(x, y);
 
-        // Slim width + increased height
-        ctx.scale(size / 75, size / 22);
+        // Narrow width + taller height
+        ctx.scale(size / 80, size / 20);
 
         ctx.beginPath();
 
@@ -184,16 +184,17 @@ function startConfetti() {
         ctx.restore();
     }
 
+    /* Draw Animation */
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        hearts.forEach((p) => {
+        hearts.forEach((heart) => {
             drawHeart(
-                p.x,
-                p.y,
-                p.size,
-                p.color,
-                p.opacity
+                heart.x,
+                heart.y,
+                heart.size,
+                heart.color,
+                heart.opacity
             );
         });
 
@@ -201,20 +202,26 @@ function startConfetti() {
         requestAnimationFrame(draw);
     }
 
+    /* Update Positions */
     function update() {
-        hearts.forEach((p) => {
-            p.y += p.speedY;
-            p.x += p.speedX;
+        hearts.forEach((heart) => {
+            heart.y += heart.speedY;
+            heart.x += heart.speedX;
 
             // Respawn at top
-            if (p.y > canvas.height + 50) {
-                p.y = -50;
-                p.x = Math.random() * canvas.width;
+            if (heart.y > canvas.height + 50) {
+                heart.y = -50;
+                heart.x = Math.random() * canvas.width;
             }
 
-            // Wrap horizontally
-            if (p.x < -50) p.x = canvas.width + 50;
-            if (p.x > canvas.width + 50) p.x = -50;
+            // Wrap left/right
+            if (heart.x < -50) {
+                heart.x = canvas.width + 50;
+            }
+
+            if (heart.x > canvas.width + 50) {
+                heart.x = -50;
+            }
         });
     }
 
