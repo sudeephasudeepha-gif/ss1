@@ -216,9 +216,8 @@ button:hover{
 
 /* BIG SCALE: FINAL OVERVIEW IMAGE */
 .final-img{
-  width: 42% !important; /* Increased from 30% */
-  min-width: 210px !important;
-  max-width: 310px !important;
+  width: 50% !important; /* Increased from 30% */
+  height:50% !important;
 }
 
 #confetti{
@@ -350,5 +349,5 @@ button:hover{
 }
 
 #page5 h1 {
-    margin-top: 20px !important;
+    margin-bottom: 50px !important;
 }
