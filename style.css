@@ -216,8 +216,9 @@ button:hover{
 
 /* BIG SCALE: FINAL OVERVIEW IMAGE */
 .final-img{
-  width:400px !important; /* Increased from 30% */
-  height:300px !important;
+  width:310px !important; /* Increased from 30% */
+  height:200px !important;
+  margin-bottom:50px !important;
 }
 
 #confetti{
